@@ -3,9 +3,22 @@ package ca.mcgill.ecse428.assignmentb.Service;
 import ca.mcgill.ecse428.assignmentb.Model.PackagingEnvelope;
 
 public class PackagingService {
+
+
+
+
+
+
+	/*
 	private static double inches_To_MM = 25.4;
 	private static double ounces_To_Grams = 28.3495;
 
+	 */
+
+
+
+
+	/*
 	//standard packege
 	private static double standard_30G_Cost = 0.49;
 	private static double standard_50G_Cost = 0.80;
@@ -16,8 +29,13 @@ public class PackagingService {
 	private static double s_min_weight = 3;
 	private static double s_max_weight = 50;
 
-	//non standard package
+	 */
 
+
+
+
+	//non standard package
+	/*
 	private static double non_standard_100G_Cost = 0.98;
 	private static double non_standard_500G_Cost = 2.40;
 
@@ -30,45 +48,46 @@ public class PackagingService {
 	private static double ns_min_weight = 0;
 	private static double ns_max_weight = 500;
 
+	 */
 
-	//For my validations I shall do width and height validations in mm and weight validations in grams
 
-	public static double convertHeightToMM(double height) {
-		double heightInMM = height * inches_To_MM;
+
+	/*
+	public static double convertInchesToMM(double size) {
+		double heightInMM = size * inches_To_MM;
 		return heightInMM;
 	}
-
-	public static double convertWidthToMM(double width) {
-		double widthInMM = width * inches_To_MM;
-		return widthInMM;
-	}
-
 	public static double convertOuncesToGrams(double weight) {
 		double weightInGrams = weight * ounces_To_Grams;
 		return weightInGrams;
 	}
+	*/
 
 
+	/*
+	public static double calculateRate(double width, String widthUnit,
+									 double height, String heightUnit,
+									 double weight, String weightUnit) throws IllegalArgumentException {
 
 
-	public static double obtainPrice(double width ,String widthUnit ,double height ,String heightUnit ,double weight,String weightUnit, String packageType) throws IllegalArgumentException{
-
-
-		if (widthUnit == "inches" || widthUnit == "Inches" ){
+		if (widthUnit == "inches" || widthUnit == "Inches") {
 			width = convertWidthToMM(width);
 		}
 
 
-		if (heightUnit == "inches" || heightUnit == "Inches"){
+		if (heightUnit == "inches" || heightUnit == "Inches") {
 			height = convertHeightToMM(height);
 		}
 
-		if (weightUnit == "ounces" || weightUnit == "Ounces"){
+		if (weightUnit == "ounces" || weightUnit == "Ounces") {
 			weight = convertHeightToMM(weight);
 		}
+	}
+	*/
 
 
-		checkDimensions(width ,widthUnit ,height , heightUnit , weight , heightUnit, packageType);
+	/*
+		checkDimensions(width ,widthUnit ,height , heightUnit , weight , heightUnit);
 
 
 		if (packageType =="standard") {
@@ -125,5 +144,5 @@ public class PackagingService {
 	}
 
 
-
+*/
 }
