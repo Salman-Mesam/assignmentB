@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,23 +42,62 @@ class ControllerTests {
                         .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isOk());
     }
+
+    /*
     @Test
-    public void getRequestMissingParameters() throws Exception {
+    public void getRequestNoParameters() throws Exception {
+
+        mockMvc.perform(get("/getrate")
+                        .contentType(MediaType.APPLICATION_JSON))
+                        .andExpect(status().isBadRequest());
+    }
+
+
+
+
+    @Test
+    public void getRequestNullParameter() throws Exception {
+
+        //Dummy parameters that need to be dimension variables to enable the GETRequest
+        String width = null; String widthUnit="mm";
+        String height="200"; String heightUnit="mm";
+        String weight="20"; String weightUnit="grams";
+
+        mockMvc.perform(get("/getrate")
+                        .param("width", width).param("widthUnit", widthUnit)
+                        .param("height", height).param("heightUnit", heightUnit)
+                        .param("weight", weight).param("weightUnit", weightUnit)
+                        .param("extra", "extraParam")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(status().reason("Too many parameters."));
+        
+        
+        MvcResult result = mockMvc.perform(get("/getrate")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+    }
+    
+    @Test
+    public void getRequestTooManyParameters() throws Exception {
 
         //Dummy parameters that need to be dimension variables to enable the GETRequest
         String width="100"; String widthUnit="mm";
         String height="200"; String heightUnit="mm";
-        String weight="20";
+        String weight="20"; String weightUnit="grams";
 
         mockMvc.perform(get("/getrate")
-                        .param("weightUnit", width).param("widthUnit", widthUnit)
+                        .param("width", width).param("widthUnit", widthUnit)
                         .param("height", height).param("heightUnit", heightUnit)
-                        .param("weight", weight).param("width", width)
+                        .param("weight", weight).param("weightUnit", weightUnit)
+                        .param("extra", "extraParam")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Missing Parameters. Usage:  " +
-                        "/getrate?width=56&widthUnit=mm&height=12.2&heightUnit=mm&weight=45.0&weightUnit=grams"));
+                .andExpect(status().reason("Too many parameters."));
     }
+
+     */
 }
 
 
