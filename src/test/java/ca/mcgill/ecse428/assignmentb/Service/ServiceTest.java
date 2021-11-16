@@ -13,7 +13,54 @@ public class ServiceTest {
     private static final double NON_STANDARD_RATE_100GRAMS = 0.98;
     private static final double NON_STANDARD_RATE_500GRAMS = 2.40;
 
+    @Test
+    public void weightInvalidUnitParameter() {
+        //Dummy dimension variables to enable the GETRequest Using mm
+        double width=120; String widthUnit="mm"; double height=200; String heightUnit="iNcHeS";
+        //Dummy weight variables to enable the GETRequest Using grams
+        double weight=20; String weightUnit="iNvAlId";
 
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> PackageEnvelopeController.getRate(width, widthUnit, height, heightUnit, weight, weightUnit),
+                "Expected getRate() to throw an \"IllegalArgumentException\", but it didn't."
+        );
+        System.out.println("Message: "+thrown.getMessage());
+        assertEquals(thrown.getMessage(),
+                "Invalid weightUnit parameter. Valid weight units (case insensitive): \"grams\" or \"ounces\"");
+    }
+    @Test
+    public void heightInvalidUnitParameter() {
+        //Dummy dimension variables to enable the GETRequest Using mm
+        double width=120; String widthUnit="MM"; double height=200; String heightUnit="iNvALiD";
+        //Dummy weight variables to enable the GETRequest Using grams
+        double weight=20; String weightUnit="grams";
+
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> PackageEnvelopeController.getRate(width, widthUnit, height, heightUnit, weight, weightUnit),
+                "Expected getRate() to throw an \"IllegalArgumentException\", but it didn't."
+        );
+        System.out.println("Message: "+thrown.getMessage());
+        assertEquals(thrown.getMessage(),
+                "Invalid heightUnit parameter. Valid height units (case insensitive): \"mm\" or \"inches\"");
+    }
+    @Test
+    public void widthInvalidUnitParameter() {
+        //Dummy dimension variables to enable the GETRequest Using mm
+        double width=120; String widthUnit="iNvALiD"; double height=200; String heightUnit="mm";
+        //Dummy weight variables to enable the GETRequest Using grams
+        double weight=20; String weightUnit="grams";
+
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> PackageEnvelopeController.getRate(width, widthUnit, height, heightUnit, weight, weightUnit),
+                "Expected getRate() to throw an \"IllegalArgumentException\", but it didn't."
+        );
+        System.out.println("Message: "+thrown.getMessage());
+        assertEquals(thrown.getMessage(),
+                "Invalid widthUnit parameter. Valid width units (case insensitive): \"mm\" or \"inches\"");
+    }
     @Test
     public void weightOuncesToGrams() {
         //Dummy dimension variables to enable the GETRequest Using inches

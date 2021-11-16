@@ -2,6 +2,7 @@ package ca.mcgill.ecse428.assignmentb.Service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Locale;
 
 public class PackagingService {
 
@@ -31,6 +32,19 @@ public class PackagingService {
     public static double calculateRate(double width, String widthUnit,
                                        double height, String heightUnit,
                                        double weight, String weightUnit) throws IllegalArgumentException {
+
+        if(!widthUnit.toLowerCase().contains("mm") && !widthUnit.toLowerCase().contains("inches")) {
+            throw new IllegalArgumentException("Invalid widthUnit parameter. Valid width units (case insensitive):" +
+                    " \"mm\" or \"inches\"");
+        }
+        if(!heightUnit.toLowerCase().contains("mm") && !heightUnit.toLowerCase().contains("inches")) {
+            throw new IllegalArgumentException("Invalid heightUnit parameter. Valid height units (case insensitive):" +
+                    " \"mm\" or \"inches\"");
+        }
+        if(!weightUnit.toLowerCase().contains("grams") && !weightUnit.toLowerCase().contains("ounces")) {
+            throw new IllegalArgumentException("Invalid weightUnit parameter. Valid weight units (case insensitive):" +
+                    " \"grams\" or \"ounces\"");
+        }
 
         if(widthUnit.contains("inches")) { width = convertToMM(width); }
         if(heightUnit.contains("inches")) { height = convertToMM(height); }
@@ -90,11 +104,6 @@ public class PackagingService {
     }
 }
 
-
-
-
-
-
 /*
     private static double convertToMM(double size) {
         BigDecimal preciseValue = new BigDecimal(size*INCHES_TO_MM);
@@ -102,71 +111,3 @@ public class PackagingService {
     }
 */
 
-
-	/*
-	private static double ounces_To_Grams = 28.3495;
-
-	public static double convertInchesToMM(double size) {
-		double heightInMM = size * inches_To_MM;
-		return heightInMM;
-	}
-	public static double convertOuncesToGrams(double weight) {
-		double weightInGrams = weight * ounces_To_Grams;
-		return weightInGrams;
-	}
-	*/
-	/*
-
-		if (widthUnit == "inches" || widthUnit == "Inches") {
-			width = convertWidthToMM(width);
-		}
-
-
-		if (heightUnit == "inches" || heightUnit == "Inches") {
-			height = convertHeightToMM(height);
-		}
-
-		if (weightUnit == "ounces" || weightUnit == "Ounces") {
-			weight = convertHeightToMM(weight);
-		}
-	}
-	*/
-	/*
-
-	}
-
-	public static void checkDimensions(double width ,String widthUnit ,double height ,String heightunit ,double weight,String heightUnit, String PackageType)  throws IllegalArgumentException{
-		if (PackageType == "Standard") {
-			if (width < s_min_Width) {
-				throw new IllegalArgumentException("The minimum width of a standard envelope has to be 90mm or 3.54331 inches");
-			} else if (width > s_max_Width) {
-				throw new IllegalArgumentException("The maximum width of a standard envelope can be 156mm or 6.14173 inches");
-			} else if (height < s_min_height) {
-				throw new IllegalArgumentException("The minimum height of a standard envelope has to be 140mm or 5.51181 inches");
-			} else if (height > s_max_height) {
-				throw new IllegalArgumentException("The maximum height of a standard envelope can be  245mm or 9.64567 inches");
-			} else if (weight < s_min_weight) {
-				throw new IllegalArgumentException("The minimum weight of a standard envelope has to be 3g or 0.105822 ounce");
-			} else if (weight > s_max_weight) {
-				throw new IllegalArgumentException("The maximum weight of a standard envelope can be 50g or 1.7637 ounces");
-			}
-		} else {
-			if (width < ns_min_Width) {
-				throw new IllegalArgumentException("The envelope must have a width that greater than 0");
-			} else if (width > ns_max_Width) {
-				throw new IllegalArgumentException(
-						"The maximum width of a non standard envelope is 270mm (10.6299 inch)");
-			} else if (height < ns_min_Height) {
-				throw new IllegalArgumentException("The envelope must have a height greater than 0");
-			} else if (height > ns_max_Height) {
-				throw new IllegalArgumentException(
-						"The maximum height of a non standard envelope can  be  380mm or 14.9606 inches");
-			} else if (weight < ns_min_weight) {
-				throw new IllegalArgumentException("Non standard envelope must have a weight greater than 0");
-			} else if (weight > ns_max_weight) {
-				throw new IllegalArgumentException(
-						"The maximum weight of a non standard envelope can be  500g or 17.637 ounces ");
-			}
-		}
-	}
-*/
