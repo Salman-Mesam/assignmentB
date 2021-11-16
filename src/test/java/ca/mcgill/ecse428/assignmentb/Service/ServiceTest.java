@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import ca.mcgill.ecse428.assignmentb.Controller.PackageEnvelopeController;
 import org.junit.jupiter.api.Test;
 
-
 public class ServiceTest {
 
     private static final double STANDARD_RATE_30GRAMS = 0.49;

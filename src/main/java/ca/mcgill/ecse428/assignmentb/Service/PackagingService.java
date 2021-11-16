@@ -1,9 +1,5 @@
 package ca.mcgill.ecse428.assignmentb.Service;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.Locale;
-
 public class PackagingService {
 
     /*  Class Constants used to implement the method logic.
@@ -103,11 +99,3 @@ public class PackagingService {
         }
     }
 }
-
-/*
-    private static double convertToMM(double size) {
-        BigDecimal preciseValue = new BigDecimal(size*INCHES_TO_MM);
-        return preciseValue.round(new MathContext(6)).doubleValue();
-    }
-*/
-

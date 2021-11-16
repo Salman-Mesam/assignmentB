@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -26,61 +25,6 @@ class ControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
-/*
-    @Test
-    public void getRequestInvalidWidthUnitMM() throws Exception {
-
-        //Dummy parameters that need to be dimension variables to enable the GETRequest
-        String width="120"; String widthUnit="iNvaLiD";
-        String height="200"; String heightUnit="mm";
-        String weight="20"; String weightUnit="grams";
-
-         //MockHttpServletResponse response
-                 //String error
-        /*
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> mockMvc.perform(get("/getrate")
-                                .param("width", width).param("widthUnit", widthUnit)
-                                .param("height", height).param("heightUnit", heightUnit)
-                                .param("weight", weight).param("weightUnit", weightUnit)
-                                .contentType(MediaType.APPLICATION_JSON)),
-                "Expected getRate() to throw an \"IllegalArgumentException\", but it didn't."
-        );
-
-        MockHttpServletResponse response = mockMvc.perform(get("/getrate")
-                        .param("width", width).param("widthUnit", widthUnit)
-                        .param("height", height).param("heightUnit", heightUnit)
-                        .param("weight", weight).param("weightUnit", weightUnit)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest())
-                //.andReturn().getResponse().getContentAsString();
-                         .andReturn().getResponse();
-
-                 String error = response.getErrorMessage();
-                 //double rate = response.getOutputStream();
-        System.out.println(error);
-    }*/
-/*
-    @Test
-    public void getRequestInvalidWidthUnitMM() throws Exception {
-
-        //Dummy parameters that need to be dimension variables to enable the GETRequest
-        String width="120"; String widthUnit="iNvaLiD";
-        String height="200"; String heightUnit="mm";
-        String weight="20"; String weightUnit="grams";
-
-        String thrown = mockMvc.perform(get("/getrate")
-                        .param("width", width).param("widthUnit", widthUnit)
-                        .param("height", height).param("heightUnit", heightUnit)
-                        .param("weight", weight).param("weightUnit", weightUnit)
-                        .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isOk())
-                .andReturn().getResolvedException().getMessage();
-        System.out.println(thrown);
-    }
-
- */
     @Test
     public void getRequestMissingParameters() throws Exception {
 
@@ -128,25 +72,4 @@ class ControllerTests {
                         .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isOk());
     }
-    /*
-
-    
-    @Test
-    public void getRequestTooManyParameters() throws Exception {
-
-        //Dummy parameters that need to be dimension variables to enable the GETRequest
-        String width="100"; String widthUnit="mm";
-        String height="200"; String heightUnit="mm";
-        String weight="20"; String weightUnit="grams";
-
-        mockMvc.perform(get("/getrate")
-                        .param("width", width).param("widthUnit", widthUnit)
-                        .param("height", height).param("heightUnit", heightUnit)
-                        .param("weight", weight).param("weightUnit", weightUnit)
-                        .param("extra", "extraParam")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Too many parameters."));
-    }
-     */
 }
